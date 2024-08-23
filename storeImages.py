@@ -84,8 +84,8 @@ class StoreImages:
                         if checkIfPageFetched != retries and self.proxyFlag :
                             proxy = self.getProxy()
                             proxyDict = {
-                                "http": 'http://' + proxy,
-                                "https": 'https://' + proxy,
+                                "http": proxy,
+                                "https": proxy,
                             }
                             print(f'Using {proxy} for the image of page {pageNumber}')
                             proxyFailed = False

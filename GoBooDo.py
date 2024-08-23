@@ -126,8 +126,8 @@ class  GoBooDo:
         if(proxy):
             link = self.getProxy()
             proxyDict = {
-                "http": 'http://'+link,
-                "https": 'https://'+link,
+                "http": link,
+                "https": link,
             }
             print(f'Using proxy {proxy} for the url of page {self.pageList[0]}',)
             try:
