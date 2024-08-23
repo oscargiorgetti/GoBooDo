@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import json
+import logging
 import random
 import requests
 from bs4 import BeautifulSoup
@@ -55,13 +56,14 @@ class  GoBooDo:
                 'Accept-Language': 'en-US,en;q=0.5',
                 'Accept-Encoding': 'gzip, deflate',
                 'Connection': 'close',
-                'Cookie': "__Secure-ENID=" + str(req.cookies['__Secure-ENID']),
+                'Cookie': "__Secure-ENID=" + str(req.cookies.get('__Secure-ENID')) + ";NID=" + str(req.cookies.get('NID')) + ";AEC=" + str(req.cookies.get('AEC')),
                         }
         except Exception as e:
             if 'captcha'.encode() in req.content:
                 print("IP detected by Google for too much requests, asking for captcha completion. Please wait some minutes before trying again. \n")
             else:
-                print(e)
+                #print(e)
+                logging.exception('ERROR')
 
     def getProxy(self):
         prox =  random.choice(self.plist)

@@ -5,6 +5,7 @@ import pickle
 from io import BytesIO
 import os
 import random
+import logging
 
 class StoreImages:
 
@@ -49,10 +50,11 @@ class StoreImages:
                 'Accept-Language': 'en-US,en;q=0.5',
                 'Accept-Encoding': 'gzip, deflate',
                 'Connection': 'close',
-                'Cookie': "__Secure-ENID=" + str(req.cookies['__Secure-ENID']),
+                'Cookie': "__Secure-ENID=" + str(req.cookies.get('__Secure-ENID')) + ";NID=" + str(req.cookies.get('NID')) + ";AEC=" + str(req.cookies.get('AEC')),
             }
         except:
-            pass
+            #pass
+            logging.exception('ERROR')
 
     def pageEmpty(self,image):
         im = Image.open(BytesIO(image))
